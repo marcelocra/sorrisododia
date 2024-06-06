@@ -55,9 +55,9 @@
         
             return html`
                 <div class="d-flex flex-column gap-3">
-                    <div>{day}</div>
+                    <div>${day}</div>
                     <ul>
-                        {smiles.map((smile) => <li>{smile}</li>)}
+                        ${smiles.map((smile) => html`<li>${smile}</li>`)}
                     </ul>
                 </div>
             `;
