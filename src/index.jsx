@@ -19,7 +19,11 @@ function DailySmiles({ daySmiles }) {
 }
 
 function ThemeSelector() {
-  const [theme, setTheme] = useState(document.body.getAttribute("data-theme"));
+  const [theme, setTheme] = useState("dracula");
+
+  useEffect(() => {
+    setTheme(document.body.getAttribute("data-theme"));
+  }, []);
 
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
