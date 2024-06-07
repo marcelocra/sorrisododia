@@ -18,7 +18,7 @@ function DailySmiles({ daySmiles }) {
   ));
 }
 
-function ThemeSelector() {
+function Header() {
   const [theme, setTheme] = useState("dracula");
 
   useEffect(() => {
@@ -30,38 +30,74 @@ function ThemeSelector() {
   }, [theme]);
 
   return (
-    <div class="flex gap-3">
-      <div
-        class={`btn btn-sm ${theme === "dracula" ? "btn-primary" : ""}`}
-        onClick={() => setTheme("dracula")}
-      >
-        Dracula
+    <div class="drawer">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <header class="flex justify-between items-center">
+          <a class="underline-offset-8" href="/">
+            <span>Sorriso do Dia</span>
+          </a>
+          <label for="my-drawer" class="btn btn-sm drawer-button">
+            Cor do site
+          </label>
+        </header>
       </div>
-      <div
-        class={`btn btn-sm ${theme === "dark" ? "btn-primary" : ""}`}
-        onClick={() => setTheme("dark")}
-      >
-        Dark
-      </div>
-      <div
-        class={`btn btn-sm ${theme === "light" ? "btn-primary" : ""}`}
-        onClick={() => setTheme("light")}
-      >
-        Light
+      <div class="drawer-side">
+        <label
+          for="my-drawer"
+          aria-label="close sidebar"
+          class="drawer-overlay"
+        ></label>
+        <div class="menu p-4 w-2/5 min-h-full flex flex-col gap-3 bg-base-200">
+          <div
+            class={`btn btn-sm ${theme === "dracula" ? "btn-primary" : ""}`}
+            onClick={() => setTheme("dracula")}
+          >
+            Dracula
+          </div>
+          <div
+            class={`btn btn-sm ${theme === "dark" ? "btn-primary" : ""}`}
+            onClick={() => setTheme("dark")}
+          >
+            Dark
+          </div>
+          <div
+            class={`btn btn-sm ${theme === "light" ? "btn-primary" : ""}`}
+            onClick={() => setTheme("light")}
+          >
+            Light
+          </div>
+        </div>
       </div>
     </div>
+
+    // <div class="flex gap-3">
+    //   <div
+    //     class={`btn btn-sm ${theme === "dracula" ? "btn-primary" : ""}`}
+    //     onClick={() => setTheme("dracula")}
+    //   >
+    //     Dracula
+    //   </div>
+    //   <div
+    //     class={`btn btn-sm ${theme === "dark" ? "btn-primary" : ""}`}
+    //     onClick={() => setTheme("dark")}
+    //   >
+    //     Dark
+    //   </div>
+    //   <div
+    //     class={`btn btn-sm ${theme === "light" ? "btn-primary" : ""}`}
+    //     onClick={() => setTheme("light")}
+    //   >
+    //     Light
+    //   </div>
+    // </div>
   );
 }
 
 export function App() {
   return (
     <article class="prose lg:prose-lg">
-      <header class="flex justify-between items-center">
-        <a class="underline-offset-8 border-b-2 border-b-black" href="/">
-          <span>Sorriso do Dia</span>
-        </a>
-        <ThemeSelector />
-      </header>
+      <Header />
       <main>
         <h2>Todo dia um motivo novo pra sorrir! :D</h2>
         <DailySmiles
