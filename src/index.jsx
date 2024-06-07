@@ -19,7 +19,7 @@ function DailySmiles({ daySmiles }) {
 
 export function App() {
   return (
-    <div>
+    <article class="prose lg:prose-lg">
       <header>
         <a href="/">
           <span>Sorriso do Dia</span>
@@ -30,10 +30,19 @@ export function App() {
         <DailySmiles
           daySmiles={[
             [
+              "7/jun/24",
+              [
+                "Dormir bem, mesmo quando são poucas horas.",
+                "Conversar sobre besteiras.",
+              ],
+            ],
+            [
               "6/jun/24",
               [
                 "Ver uma série divertida.",
                 "Piadocas bem feitas e no momento certo.",
+                "A água quente tocando no corpo ao ligar o chuveiro em um dia frio.",
+                "As versões brasileiras de qualquer música internacional.",
               ],
             ],
             [
@@ -55,14 +64,14 @@ export function App() {
             [
               "3/jun/24",
               [
-                "Quando você rasga o pão de sal (pão francês) no meio e sente aquele cheirinho.",
-                "Quando você toma uma sopinha quente no frio.",
+                "O cheirinho do pão de sal (francês) quando você rasga ele no meio, especialmente quentinho.",
+                "Sopa quente no frio.",
               ],
             ],
           ]}
         />
       </main>
-    </div>
+    </article>
   );
 }
 
