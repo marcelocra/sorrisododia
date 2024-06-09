@@ -5,7 +5,6 @@
 # linguist-generated         generated.rb          Excluded from stats, hidden in diffs
 # linguist-language=name     languages.yml         Highlighted and classified as name
 # linguist-vendored          vendor.yml            Excluded from stats
-docs/ linguist-vendored
 
 # Git LFS
 # -------
