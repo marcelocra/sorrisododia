@@ -70,27 +70,6 @@ function Header() {
         </div>
       </div>
     </div>
-
-    // <div class="flex gap-3">
-    //   <div
-    //     class={`btn btn-sm ${theme === "dracula" ? "btn-primary" : ""}`}
-    //     onClick={() => setTheme("dracula")}
-    //   >
-    //     Dracula
-    //   </div>
-    //   <div
-    //     class={`btn btn-sm ${theme === "dark" ? "btn-primary" : ""}`}
-    //     onClick={() => setTheme("dark")}
-    //   >
-    //     Dark
-    //   </div>
-    //   <div
-    //     class={`btn btn-sm ${theme === "light" ? "btn-primary" : ""}`}
-    //     onClick={() => setTheme("light")}
-    //   >
-    //     Light
-    //   </div>
-    // </div>
   );
 }
 
@@ -141,6 +120,7 @@ export function App() {
                 "Sopa quente no frio.",
               ],
             ],
+            ["2/jun/24", ["Teste"]],
           ]}
         />
       </main>
