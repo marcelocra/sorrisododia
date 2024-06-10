@@ -26,15 +26,11 @@ function DailySmiles({ daySmiles }) {
   );
 }
 
-function getInitialTheme() {
-  return document?.body?.getAttribute("data-theme") ?? "dracula";
-}
-
 function Header() {
-  const [theme, setTheme] = useState(getInitialTheme());
+  const [theme, setTheme] = useState("dracula");
 
   useEffect(() => {
-    setTheme(getInitialTheme());
+    setTheme(document?.body?.getAttribute("data-theme") ?? "dracula");
   }, []);
 
   useEffect(() => {
