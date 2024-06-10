@@ -45,11 +45,11 @@ function Header() {
     <div class="drawer">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
-        <header class="flex justify-between items-center">
+        <header class="flex items-center justify-between">
           <a class="underline-offset-8" href="/">
             <span>Sorriso do Dia</span>
           </a>
-          <label for="my-drawer" class="btn btn-sm drawer-button">
+          <label for="my-drawer" class="btn drawer-button btn-sm">
             Cor do site
           </label>
         </header>
@@ -60,7 +60,7 @@ function Header() {
           aria-label="close sidebar"
           class="drawer-overlay"
         ></label>
-        <div class="menu p-4 w-2/5 min-h-full flex flex-col gap-3 bg-base-200">
+        <div class="menu flex min-h-full w-2/5 flex-col gap-3 bg-base-200 p-4">
           <div
             class={`btn btn-sm ${theme === "dracula" ? "btn-primary" : ""}`}
             onClick={() => setTheme("dracula")}
