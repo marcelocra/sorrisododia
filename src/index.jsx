@@ -82,12 +82,26 @@ export function App() {
         <DailySmiles
           daySmiles={[
             [
+              "10/jun/24",
+              [
+                "Trabalhar com o gato deitado em você.",
+                "Estudar um assunto que você gosta muito.",
+              ],
+            ],
+            [
+              "9/jun/24",
+              [
+                "Comer cookie quentinho. (Bonus: com café!)",
+                "Estudar algo novo e interessante.",
+              ],
+            ],
+            [
               "8/jun/24",
               [
-                 "Ver um filme no cinema comendo pipoca.",
-                 "Ver o sorriso da pessoa que você ama.",
-                 "Molhar um biscoito no café quente.",
-                 "Quando a comida é mehor do que você esperava.",
+                "Ver um filme no cinema comendo pipoca.",
+                "Ver o sorriso da pessoa que você ama.",
+                "Molhar um biscoito no café quente.",
+                "Quando a comida é mehor do que você esperava.",
               ],
             ],
             [
