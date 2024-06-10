@@ -1,28 +1,40 @@
 import { hydrate, prerender as ssr } from "preact-iso";
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from "react";
 
 import "./style.css";
 
+/**
+ * @param {{ daySmiles: [string, string[]][] }} param0 Props
+ * @returns A daily smile block.
+ */
 function DailySmiles({ daySmiles }) {
-  return daySmiles.map(([day, smiles]) => (
-    <div>
-      <h4>{day}</h4>
-      <div>
-        {smiles.map((smile, index) => (
+  return (
+    <>
+      {daySmiles.map(([day, smiles]) => (
+        <div key={day}>
+          <h4>{day}</h4>
           <div>
-            {index + 1}. {smile}
+            {smiles.map((smile, index) => (
+              <div>
+                {index + 1}. {smile}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
-  ));
+        </div>
+      ))}
+    </>
+  );
+}
+
+function getInitialTheme() {
+  return document?.body?.getAttribute("data-theme") ?? "dracula";
 }
 
 function Header() {
-  const [theme, setTheme] = useState("dracula");
+  const [theme, setTheme] = useState(getInitialTheme());
 
   useEffect(() => {
-    setTheme(document.body.getAttribute("data-theme"));
+    setTheme(getInitialTheme());
   }, []);
 
   useEffect(() => {
@@ -152,9 +164,11 @@ export function App() {
 }
 
 if (typeof window !== "undefined") {
+  //@ts-expect-error - might be null: we know it isn't.
   hydrate(<App />, document.getElementById("app"));
 }
 
+//@ts-expect-error - implicit any: this is Preact api.
 export async function prerender(data) {
   return await ssr(<App {...data} />);
 }
