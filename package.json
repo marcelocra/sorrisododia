@@ -7,6 +7,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "eslint-config-prettier": "^9.1.0",
     "preact": "^10.20.0",
     "preact-iso": "^2.6.3",
     "preact-render-to-string": "^6.5.4"
@@ -16,11 +17,16 @@
     "@tailwindcss/typography": "^0.5.13",
     "autoprefixer": "^10.4.19",
     "daisyui": "^4.12.2",
+    "eslint": "^9.4.0",
+    "eslint-config-preact": "^1.4.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
     "vite": "^5.2.2"
   },
   "eslintConfig": {
-    "extends": "preact"
+    "extends": "preact",
+    "plugins": [
+      "prettier"
+    ]
   }
 }
