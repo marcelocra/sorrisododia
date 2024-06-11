@@ -1,27 +1,67 @@
+// vim: fdm=marker:fmr={{{,}}}:fdl=1:fen:ai:et:ts=2:sw=2
 import { hydrate, prerender as ssr } from "preact-iso";
 import { useEffect, useState } from "react";
 
+import data from "./data.txt?raw";
 import "./style.css";
 
+const nonEmptyLines = data
+  .trim()
+  .split("\n")
+  .filter((line) => line !== "")
+  .reduce(
+    /**
+     *
+     * @param {Map<string, string|number|string[]>} acc
+     * @param {string} curr
+     * @returns
+     */
+    (acc, curr) => {
+      const key = acc.get("next");
+
+      // Initialization.
+      if (key === 0 || !curr.startsWith("- ")) {
+        acc.set("next", curr);
+        acc.set(curr, []);
+        return acc;
+      }
+
+      // At this point, we know that the key is a string and
+      // that it will bring an array for us.
+
+      /**
+       * @type {string[]}
+       */
+      //@ts-ignore
+      const currArray = acc.get(key);
+      currArray.push(curr);
+      //@ts-ignore
+      acc.set(key, currArray);
+
+      return acc;
+    },
+    new Map([["next", 0]]),
+  );
+
 /**
- * @param {{ daySmiles: [string, string[]][] }} param0 Props
  * @returns A daily smile block.
  */
-function DailySmiles({ daySmiles }) {
+function DailySmiles() {
   return (
     <>
-      {daySmiles.map(([day, smiles]) => (
-        <div key={day}>
-          <h4>{day}</h4>
-          <div>
-            {smiles.map((smile, index) => (
-              <div>
-                {index + 1}. {smile}
-              </div>
-            ))}
+      {Array.from(nonEmptyLines.entries())
+        .filter((x) => x[0] !== "next")
+        .map(([day, smiles]) => (
+          <div key={day}>
+            <h4>{day}</h4>
+            <ol class="leading-5">
+              {/* @ts-expect-error - smiles can only be an array here. */}
+              {smiles.map((smile) => (
+                <li>{smile.replace("- ", "")}</li>
+              ))}
+            </ol>
           </div>
-        </div>
-      ))}
+        ))}
     </>
   );
 }
@@ -87,73 +127,7 @@ export function App() {
       <Header />
       <main>
         <h2>Todo dia um motivo novo pra sorrir! :D</h2>
-        <DailySmiles
-          daySmiles={[
-            [
-              "10/jun/24",
-              [
-                "Trabalhar com o gato deitado em você.",
-                "Estudar um assunto que você gosta muito.",
-              ],
-            ],
-            [
-              "9/jun/24",
-              [
-                "Comer cookie quentinho. (Bonus: com café!)",
-                "Estudar algo novo e interessante.",
-              ],
-            ],
-            [
-              "8/jun/24",
-              [
-                "Ver um filme no cinema comendo pipoca.",
-                "Ver o sorriso da pessoa que você ama.",
-                "Molhar um biscoito no café quente.",
-                "Quando a comida é mehor do que você esperava.",
-              ],
-            ],
-            [
-              "7/jun/24",
-              [
-                "Dormir bem, mesmo quando são poucas horas.",
-                "Conversar sobre besteiras.",
-              ],
-            ],
-            [
-              "6/jun/24",
-              [
-                "Ver uma série divertida.",
-                "Piadocas bem feitas e no momento certo.",
-                "A água quente tocando no corpo ao ligar o chuveiro em um dia frio.",
-                "As versões brasileiras de qualquer música internacional.",
-              ],
-            ],
-            [
-              "5/jun/24",
-              [
-                "Cheiro de café quentinho.",
-                "Miado de gato bebê.",
-                "Ronronado de gatinhos quando você faz carinho.",
-              ],
-            ],
-            [
-              "4/jun/24",
-              [
-                "O cheiro de feijão recém cozido.",
-                "O céu roxo e rosa do por do sol de maio.",
-                "Conversar com amigos que você não vê há muito tempo.",
-              ],
-            ],
-            [
-              "3/jun/24",
-              [
-                "O cheirinho do pão de sal (francês) quando você rasga ele no meio, especialmente quentinho.",
-                "Sopa quente no frio.",
-              ],
-            ],
-            ["2/jun/24", ["Teste"]],
-          ]}
-        />
+        <DailySmiles />
       </main>
     </article>
   );
