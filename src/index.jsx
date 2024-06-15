@@ -53,7 +53,12 @@ function DailySmiles() {
         .filter((x) => x[0] !== "next")
         .map(([day, smiles]) => (
           <div key={day}>
-            <h4>{day}</h4>
+            <div class="flex flex-row items-baseline gap-3">
+              <h4 class="text-primary">{day.replace(/ .*$/, "")}</h4>
+              <div class="text-xs font-light italic text-secondary">
+                {day.replace(/^[^ ]+ /, "")}
+              </div>
+            </div>
             <ol class="leading-5">
               {/* @ts-expect-error - smiles can only be an array here. */}
               {smiles.map((smile) => (
