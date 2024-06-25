@@ -132,6 +132,12 @@ export function App() {
       <Header />
       <main>
         <h2>Todo dia um motivo novo pra sorrir! :D</h2>
+        <h4>
+          <i>
+            A ideia desse site é manter uma lista das coisas boas do dia a dia,
+            pra nos ajudar a lembrar.
+          </i>
+        </h4>
         <DailySmiles />
       </main>
     </article>
