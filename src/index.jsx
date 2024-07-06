@@ -1,6 +1,5 @@
-// vim: fdm=marker:fmr={{{,}}}:fdl=1:fen:ai:et:ts=2:sw=2
 import { hydrate, prerender as ssr } from "preact-iso";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "preact/hooks";
 
 import data from "./data.txt?raw";
 import "./style.css";
