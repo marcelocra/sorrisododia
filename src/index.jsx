@@ -1,6 +1,15 @@
-import { hydrate, prerender as ssr } from "preact-iso";
+import {
+  ErrorBoundary,
+  LocationProvider,
+  Route,
+  Router,
+  hydrate,
+  lazy,
+  prerender as ssr,
+} from "preact-iso";
 import { useEffect, useState } from "preact/hooks";
 
+import externalLink from "./assets/external-link.svg";
 import data from "./data.txt?raw";
 import "./style.css";
 
@@ -125,7 +134,7 @@ function Header() {
   );
 }
 
-export function App() {
+function Home() {
   return (
     <article class="prose lg:prose-lg">
       <Header />
@@ -140,6 +149,57 @@ export function App() {
         <DailySmiles />
       </main>
     </article>
+  );
+}
+
+function NotFound() {
+  return (
+    <div class="flex flex-col gap-3 items-center">
+      <div>Nada por aqui. Mas tudo bem, é só voltar!</div>
+      <a class="btn btn-sm uppercase btn-primary" href="/">
+        Voltar
+      </a>
+    </div>
+  );
+}
+
+/**
+ * @param {any} props
+ */
+function About(props) {
+  return (
+    <div class="flex flex-row items-center">
+      <span>Criado por Marcelo Almeida (</span>
+      <a
+        class="text-primary underline decoration-2 underline-offset-4"
+        href="https://github.com/marcelocra"
+        target="_blank"
+      >
+        github
+      </a>
+      <span>) com muito 💜️ e ☕️.</span>
+    </div>
+  );
+}
+
+export function App() {
+  return (
+    <LocationProvider>
+      <ErrorBoundary>
+        <Router>
+          <Home path="/" />
+
+          {/* Alternative dedicated route component for better TS support */}
+          <Route path="/about" component={About} />
+
+          {/* The component get the props as `id`. */}
+          {/* <Route path="/profile/:id" component={Profile} /> */}
+
+          {/* `default` prop indicates a fallback route. Useful for 404 pages */}
+          <NotFound default />
+        </Router>
+      </ErrorBoundary>
+    </LocationProvider>
   );
 }
 
