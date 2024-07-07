@@ -9,7 +9,6 @@ import {
 } from "preact-iso";
 import { useEffect, useState } from "preact/hooks";
 
-import externalLink from "./assets/external-link.svg";
 import data from "./data.txt?raw";
 import "./style.css";
 
