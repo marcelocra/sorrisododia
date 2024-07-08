@@ -8,7 +8,6 @@ export default defineConfig({
       prerender: {
         enabled: true,
         renderTarget: "#app",
-        additionalPrerenderRoutes: ["/about", "/404"],
       },
     }),
   ],

@@ -174,18 +174,27 @@ function AboutSync(props) {
 const Home = lazy(() => Promise.resolve(HomeSync));
 const About = lazy(() => Promise.resolve(AboutSync));
 
+/**
+ * @type {Record<string, {component: any, options?: {default: boolean}}>}
+ */
+const pathToComponent = {
+  "/": { component: Home },
+  "/about": { component: About },
+  "/404": { component: NotFound, options: { default: true } },
+};
+
 export function App() {
   return (
     <LocationProvider>
       <ErrorBoundary>
         <Router>
-          <Route path="/" component={Home} />
-          <Route path="/about" component={About} />
-          {/* The component get the props as `id`. */}
-          {/* <Route path="/profile/:id" component={Profile} /> */}
-
-          {/* `default` prop indicates a fallback route. Useful for 404 pages */}
-          <Route default component={NotFound} />
+          {Object.entries(pathToComponent).map(([path, config]) => (
+            <Route
+              path={path}
+              component={config.component}
+              {...config.options}
+            />
+          ))}
         </Router>
       </ErrorBoundary>
     </LocationProvider>
@@ -199,5 +208,13 @@ if (typeof window !== "undefined") {
 
 //@ts-expect-error - implicit any: this is Preact api.
 export async function prerender(data) {
-  return await ssr(<App {...data} />);
+  const { html, links: discoveredLinks } = await ssr(<App {...data} />);
+
+  return {
+    html,
+    links: new Set([
+      ...(discoveredLinks ?? []),
+      ...Object.keys(pathToComponent),
+    ]),
+  };
 }
