@@ -190,11 +190,8 @@ export function App() {
     <LocationProvider>
       <ErrorBoundary>
         <Router>
-          <Home path="/" />
-
-          {/* Alternative dedicated route component for better TS support */}
+          <Route path="/" component={Home} />
           <Route path="/about" component={About} />
-
           {/* The component get the props as `id`. */}
           {/* <Route path="/profile/:id" component={Profile} /> */}
 
