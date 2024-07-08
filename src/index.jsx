@@ -9,6 +9,7 @@ import {
 } from "preact-iso";
 import { useEffect, useState } from "preact/hooks";
 
+import { NotFound } from "./404.jsx";
 import data from "./data.txt?raw";
 import "./style.css";
 
@@ -151,17 +152,6 @@ function HomeSync() {
   );
 }
 
-function NotFoundSync() {
-  return (
-    <div class="flex flex-col gap-3 items-center">
-      <div>Nada por aqui. Mas tudo bem, é só voltar!</div>
-      <a class="btn btn-sm uppercase btn-primary" href="/">
-        Voltar
-      </a>
-    </div>
-  );
-}
-
 /**
  * @param {any} props
  */
@@ -182,7 +172,6 @@ function AboutSync(props) {
 }
 
 const Home = lazy(() => Promise.resolve(HomeSync));
-const NotFound = lazy(() => Promise.resolve(NotFoundSync));
 const About = lazy(() => Promise.resolve(AboutSync));
 
 export function App() {
@@ -196,7 +185,7 @@ export function App() {
           {/* <Route path="/profile/:id" component={Profile} /> */}
 
           {/* `default` prop indicates a fallback route. Useful for 404 pages */}
-          <NotFound default />
+          <Route default component={NotFound} />
         </Router>
       </ErrorBoundary>
     </LocationProvider>

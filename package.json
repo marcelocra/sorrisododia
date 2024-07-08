@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && mv ./dist/404/index.html ./dist/404.html && rm -r ./dist/404",
     "preview": "vite preview"
   },
   "dependencies": {

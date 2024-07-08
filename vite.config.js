@@ -1,5 +1,5 @@
-import { defineConfig } from "vite";
 import preact from "@preact/preset-vite";
+import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,10 +8,7 @@ export default defineConfig({
       prerender: {
         enabled: true,
         renderTarget: "#app",
-        additionalPrerenderRoutes: [
-          "/about",
-          "/404",
-        ]
+        additionalPrerenderRoutes: ["/about", "/404"],
       },
     }),
   ],
