@@ -133,7 +133,7 @@ function Header() {
   );
 }
 
-function Home() {
+function HomeSync() {
   return (
     <article class="prose lg:prose-lg">
       <Header />
@@ -151,7 +151,7 @@ function Home() {
   );
 }
 
-function NotFound() {
+function NotFoundSync() {
   return (
     <div class="flex flex-col gap-3 items-center">
       <div>Nada por aqui. Mas tudo bem, é só voltar!</div>
@@ -165,7 +165,7 @@ function NotFound() {
 /**
  * @param {any} props
  */
-function About(props) {
+function AboutSync(props) {
   return (
     <div class="flex flex-row items-center">
       <span>Criado por Marcelo Almeida (</span>
@@ -180,6 +180,10 @@ function About(props) {
     </div>
   );
 }
+
+const Home = lazy(() => Promise.resolve(HomeSync));
+const NotFound = lazy(() => Promise.resolve(NotFoundSync));
+const About = lazy(() => Promise.resolve(AboutSync));
 
 export function App() {
   return (
