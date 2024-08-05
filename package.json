@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build-doc": "For GitHub pages, we need the 404.html file at the root of the dist folder, otherwise it doesn't work.",
+    "// ": "For GitHub pages, we need the 404.html file at the root of the dist folder, otherwise it doesn't work.",
     "build": "vite build && mv ./dist/404/index.html ./dist/404.html && rm -r ./dist/404",
     "preview": "vite preview"
   },
@@ -40,7 +40,8 @@
   },
   "prettier": {
     "importOrder": [
-      "^react",
+      "^(node|npm):",
+      "^[p]react",
       "<THIRD_PARTY_MODULES>",
       "^@/(.*)$",
       "^[./]"
